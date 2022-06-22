@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>simple weather</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <h1>weather in</h1>
+    <input type="text" placeholder="enter a place..." v-model="place">
+    <button  v-on:click="getLocationFromName">Search</button>
+    <button  v-on:click="setFavourite">Favourite</button>
+
+    <div class="infodiv" id="info">
+
+      <br>
+      <p v-if="temp != null">{{ Math.round(temp) }}°C and {{main}} <br> <img v-if="temp != null"
+          v-bind:src="'http://openweathermap.org/img/wn/'+this.icon+'@2x.png'">
+      </p>
+      <p class="desc">{{description}}</p>
+      <p>Humidity: {{humidity}}%</p>
+      <p>Pressure: {{pressure}}mb</p>
+
+      <h2>Favorites:</h2>
+      <div class="favorites">
+        <div v-for="item in favourites">
+          <button  v-on:click="setName(item)">{{item}}</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        temp: null,
+        description: null,
+        humidity: null,
+        pressure: null,
+        main: null,
+        icon: null,
+        place: 'Praha',
+        favourites: []
+      },
+      mounted() {
+        JSON.parse(localStorage.getItem("favourite")).forEach(id => {
+          this.favourites.push(id);
+          console.log(id);
+        })
+        let place = this.place;
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=04c48969d807f018f709599816759e7b&units=metric`).then(response => {
+          app.temp = response.data.main.temp;
+          app.humidity = response.data.main.humidity;
+          app.pressure = response.data.main.pressure;
+          app.description = response.data.weather[0].description;
+          app.main = response.data.weather[0].main;
+          app.icon = response.data.weather[0].icon;
+        });
+
+      },
+      methods: {
+        getLocationFromName: function () {
+
+          let place=this.place
+          axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=04c48969d807f018f709599816759e7b&units=metric`).then(response => {
+            app.temp = response.data.main.temp;
+            app.humidity = response.data.main.humidity;
+            app.pressure = response.data.main.pressure;
+            app.description = response.data.weather[0].description;
+            app.main = response.data.weather[0].main;
+            app.icon = response.data.weather[0].icon;
+          });
+
+        },
+        setName: function (item) {
+          console.log(item);
+          this.place = item;
+          this.getLocationFromName();
+        },
+        setFavourite: function () {
+          let favorites = JSON.parse(localStorage.getItem("favourite"));
+          // let favorites = [];
+
+          if (favorites) {
+            if (favorites.filter(i => i == this.place).length < 1) {
+              favorites.push(this.place);
+              localStorage.setItem("favourite", JSON.stringify(favorites));
+            }
+            else {
+              localStorage.setItem("favourite", JSON.stringify(favorites.filter(i => i != this.place)));
+            }
+          }
+          else {
+            localStorage.setItem("favourite", JSON.stringify([this.place]));
+          }
+
+          this.favourites = [];
+          JSON.parse(localStorage.getItem("favourite")).forEach(id => {
+            this.favourites.push(id);
+
+          });
+
+          console.log(this.favourites);
+
+          this.$forceUpdate();
+
+        }
+      }
+    })
+  </script>
+</html>
