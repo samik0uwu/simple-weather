@@ -22,9 +22,11 @@
         <button v-on:click="getLocationFromName">
           <img src="search.svg" alt="">
         </button>
+        <button v-on:click="setFavourite">
+          <img id="star" src="star-gray.svg" alt="">
+        </button>
       </div>
 
-      <!-- <button v-on:click="setFavourite">Favourite</button> -->
 
       <div class="container-search-result">
         <h2>{{name}}</h2>
@@ -37,8 +39,8 @@
         <span class="right">wind speed: {{wind}}m/s</span>
     </section>
     <section class="container-favorites">
-      <h2>Favorites:</h2>
-      <div class="favorites">
+      <h2>favorites:</h2>
+      <div class="container-favorites-items">
         <div v-for="item in favourites">
           <button v-on:click="setName(item)">{{item}}</button>
         </div>
@@ -108,24 +110,35 @@
         },
         setName: function (item) {
           console.log(item);
-          this.place = item;
+          this.name = item;
           this.getLocationFromName();
         },
         setFavourite: function () {
+          var star=document.getElementById('star');
+          console.log(star.src);
+          if(star.src=="star-gray.svg"){
+            star.src="star-orange.svg";
+            console.log("orange now?");
+          }
+          else{
+            star.src="star-gray.svg";
+            console.log("gray now?");
+          }
+
           let favorites = JSON.parse(localStorage.getItem("favourite"));
           // let favorites = [];
 
           if (favorites) {
-            if (favorites.filter(i => i == this.place).length < 1) {
-              favorites.push(this.place);
+            if (favorites.filter(i => i == this.name).length < 1) {
+              favorites.push(this.name);
               localStorage.setItem("favourite", JSON.stringify(favorites));
             }
             else {
-              localStorage.setItem("favourite", JSON.stringify(favorites.filter(i => i != this.place)));
+              localStorage.setItem("favourite", JSON.stringify(favorites.filter(i => i != this.name)));
             }
           }
           else {
-            localStorage.setItem("favourite", JSON.stringify([this.place]));
+            localStorage.setItem("favourite", JSON.stringify([this.name]));
           }
 
           this.favourites = [];

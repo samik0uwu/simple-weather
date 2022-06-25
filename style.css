@@ -27,7 +27,7 @@ body {
   padding-left: 30px;
   font-size: 2em;
   font-weight: 600;
-  width: 20vw;
+  width: 17vw;
   margin-top: 5vh;
 }
 .container-search-head button {
@@ -64,4 +64,19 @@ body {
 }
 .container-search-result .right {
   text-align: right;
+}
+.container-favorites-items {
+  display: flex;
+}
+.container-favorites-items button {
+  color: #F2F2F1;
+  background-color: #308490;
+  border: none;
+  border-radius: 30px;
+  height: 5vh;
+  min-width: 5vw;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 0 2vw;
+  margin: 0 5px;
 }/*# sourceMappingURL=style.css.map */
