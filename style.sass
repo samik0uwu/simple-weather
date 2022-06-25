@@ -1,0 +1,63 @@
+$white: #F2F2F1
+$black: #48484A
+$orange: #EC6E4C
+$blue: #308490
+
+body
+    background-color: $white
+    font-family: 'Poppins', sans-serif
+    // weight 500, 600
+
+.container
+    background-color: $black
+    color: $white
+    margin: 15vh 25vw 0 25vw
+    border-radius: 20px
+    padding: 5vh 5vw
+    &-search
+        &-head
+            display: flex
+            justify-content: space-between
+            h1
+                font-size: 3em
+                font-weight: 600
+            input
+                color: $black
+                background-color: $white
+                height: 5vh
+                border: none
+                border-radius: 30px
+                padding-left: 30px 
+                font-size: 2em
+                font-weight: 600
+                width: 20vw
+                margin-top: 5vh
+            button
+                height: 5vh
+                width: 5vh
+                margin-top: 5vh
+                background-color: $blue
+                border-radius: 30px
+                border: none
+                img
+                    height: 4vh
+                    padding-top: 0.7vh
+                    color: $white
+        &-result
+            background-color: $blue
+            margin: 5vh 3vw
+            padding: 2vh 2vw 2vh 2vw
+            border-radius: 20px
+            display: grid
+            grid-template-columns: auto auto
+            h2
+                font-size: 2.5em
+                font-weight: 600
+            img
+                margin-left: auto
+            span
+                font-size: 1.5em
+                font-weight: 600
+            .right
+                text-align: right
+                

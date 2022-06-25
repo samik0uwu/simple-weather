@@ -1,1 +1,67 @@
-/*# sourceMappingURL=style.css.map */
+body {
+  background-color: #F2F2F1;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  background-color: #48484A;
+  color: #F2F2F1;
+  margin: 15vh 25vw 0 25vw;
+  border-radius: 20px;
+  padding: 5vh 5vw;
+}
+.container-search-head {
+  display: flex;
+  justify-content: space-between;
+}
+.container-search-head h1 {
+  font-size: 3em;
+  font-weight: 600;
+}
+.container-search-head input {
+  color: #48484A;
+  background-color: #F2F2F1;
+  height: 5vh;
+  border: none;
+  border-radius: 30px;
+  padding-left: 30px;
+  font-size: 2em;
+  font-weight: 600;
+  width: 20vw;
+  margin-top: 5vh;
+}
+.container-search-head button {
+  height: 5vh;
+  width: 5vh;
+  margin-top: 5vh;
+  background-color: #308490;
+  border-radius: 30px;
+  border: none;
+}
+.container-search-head button img {
+  height: 4vh;
+  padding-top: 0.7vh;
+  color: #F2F2F1;
+}
+.container-search-result {
+  background-color: #308490;
+  margin: 5vh 3vw;
+  padding: 2vh 2vw 2vh 2vw;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.container-search-result h2 {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+.container-search-result img {
+  margin-left: auto;
+}
+.container-search-result span {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+.container-search-result .right {
+  text-align: right;
+}/*# sourceMappingURL=style.css.map */
