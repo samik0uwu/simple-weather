@@ -4,11 +4,10 @@ var app = new Vue({
       temp: null,
       description: null,
       humidity: null,
-      pressure: null,
       main: null,
       icon: null,
       wind: null,
-      place: 'Praha',
+      place: 'Prague',
       name: null,
       feels: null,
       favourites: []
@@ -23,7 +22,6 @@ var app = new Vue({
         console.log(response.data);
         app.temp = response.data.main.temp;
         app.humidity = response.data.main.humidity;
-        app.pressure = response.data.main.pressure;
         app.description = response.data.weather[0].description;
         app.main = response.data.weather[0].main;
         app.icon = response.data.weather[0].icon;
@@ -41,7 +39,6 @@ var app = new Vue({
           console.log(response.data);
           app.temp = response.data.main.temp;
           app.humidity = response.data.main.humidity;
-          app.pressure = response.data.main.pressure;
           app.description = response.data.weather[0].description;
           app.main = response.data.weather[0].main;
           app.icon = response.data.weather[0].icon;
