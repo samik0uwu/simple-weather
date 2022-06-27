@@ -57,16 +57,16 @@ var app = new Vue({
         this.getLocationFromName();
       },
       setFavourite: function () {
-        var star=document.getElementById('star');
-        console.log(star.src);
-        if(star.src=="star-gray.svg"){
-          star.src="star-orange.svg";
-          console.log("orange now?");
-        }
-        else{
-          star.src="star-gray.svg";
-          console.log("gray now?");
-        }
+        // var star=document.getElementById('star');
+        // console.log(star.src);
+        // if(star.src=="star-gray.svg"){
+        //   star.src="star-orange.svg";
+        //   console.log("orange now?");
+        // }
+        // else{
+        //   star.src="star-gray.svg";
+        //   console.log("gray now?");
+        // }
 
         let favorites = JSON.parse(localStorage.getItem("favourite"));
         // let favorites = [];
