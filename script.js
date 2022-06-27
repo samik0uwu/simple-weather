@@ -53,7 +53,7 @@ var app = new Vue({
       },
       setName: function (item) {
         console.log(item);
-        this.name = item;
+        this.place = item;
         this.getLocationFromName();
       },
       setFavourite: function () {
