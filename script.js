@@ -15,11 +15,9 @@ var app = new Vue({
     mounted() {
       JSON.parse(localStorage.getItem("favourite")).forEach(id => {
         this.favourites.push(id);
-        console.log(id);
       })
       let place = this.place;
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=04c48969d807f018f709599816759e7b&units=metric`).then(response => {
-        console.log(response.data);
         app.temp = response.data.main.temp;
         app.humidity = response.data.main.humidity;
         app.description = response.data.weather[0].description;
@@ -36,7 +34,6 @@ var app = new Vue({
 
         let place = this.place
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=04c48969d807f018f709599816759e7b&units=metric`).then(response => {
-          console.log(response.data);
           app.temp = response.data.main.temp;
           app.humidity = response.data.main.humidity;
           app.description = response.data.weather[0].description;
@@ -49,7 +46,6 @@ var app = new Vue({
 
       },
       setName: function (item) {
-        console.log(item);
         this.place = item;
         this.getLocationFromName();
       },
@@ -66,7 +62,6 @@ var app = new Vue({
         // }
 
         let favorites = JSON.parse(localStorage.getItem("favourite"));
-        // let favorites = [];
 
         if (favorites) {
           if (favorites.filter(i => i == this.name).length < 1) {
@@ -86,8 +81,6 @@ var app = new Vue({
           this.favourites.push(id);
 
         });
-
-        console.log(this.favourites);
 
         this.$forceUpdate();
 
